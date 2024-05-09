@@ -1,13 +1,14 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Register from './Login_SignUp/Register';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Hello world!</h1>
+        App here.
         <Routes>
-          <Route path='/register' />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </div>
     </Router>
