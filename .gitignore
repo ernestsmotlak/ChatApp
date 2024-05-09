@@ -5,8 +5,3 @@
 /build
 /dist
 
-# Ignore environment variables file
-.env
-
-# Ignore any other files or directories specific to your development environment
-
