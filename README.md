@@ -1,7 +1,7 @@
-## War Game with Sqlite, React and Node.js
+# War Game with Sqlite, React and Node.js
 
-# Backend 
+## Backend 
 
-# Frontend
+## Frontend
 
-# Database
+## Database
