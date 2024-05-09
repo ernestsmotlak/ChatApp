@@ -31,6 +31,7 @@ const Register = () => {
 
             const data = await response.json();
             setRegistrationSuccessful(data.registrationReturn);
+            console.log('Registration of the user: ' + username + ' was successfull!');
             console.log('Druga ' + registrationSuccessful);
 
         }
