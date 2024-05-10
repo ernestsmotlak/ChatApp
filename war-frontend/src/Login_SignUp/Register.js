@@ -42,6 +42,7 @@ const Register = () => {
             setRegistrationSuccessful(data.registrationReturn);
             console.log('Registration of the user: ' + username + ' was successfull!');
             navigate('/login');
+
         } catch (error) {
             setError(error.message);
             setRegistrationSuccessful(false);

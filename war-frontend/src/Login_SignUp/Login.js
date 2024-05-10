@@ -55,7 +55,7 @@ const Login = () => {
                     <label className='form-label'>Insert you password:</label>
                     <input className='form-control-lg w-75 login-form' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button className='btn btn-danger' type='submit'>Login.</button>
+                <button className='btn btn-danger mt-3 mb-4' type='submit'>Login.</button>
             </form>
         </div>
     )
