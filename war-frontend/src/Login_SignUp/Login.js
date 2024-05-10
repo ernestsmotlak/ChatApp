@@ -2,10 +2,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [uuid, setUuid] = useState('');
     const [loginSuccessful, setLoginccessful] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -31,8 +33,9 @@ const Login = () => {
 
             const data = await response.json();
             setLoginccessful(data.loginStatus);
+            setUuid(data.uniqueUserID);
             console.log(username + ' login was successful!');
-
+            console.log('Uuid: ' + data.uniqueUserID);
 
         }
         catch (error) {
@@ -42,6 +45,10 @@ const Login = () => {
         }
 
     };
+
+    useEffect(() => {
+        console.log('Uuid: ' + uuid);
+    }, [uuid]);
 
     return (
         <div>
