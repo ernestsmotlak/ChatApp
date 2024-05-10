@@ -33,12 +33,14 @@ const Login = () => {
             setLoginccessful(data.loginStatus);
             console.log(username + ' login was successful!');
 
+
         }
         catch (error) {
             setError(error.message);
             setLoginccessful(error.loginStatus);
             console.log('Tretjic Login status: ' + loginSuccessful);
         }
+
     };
 
     return (
