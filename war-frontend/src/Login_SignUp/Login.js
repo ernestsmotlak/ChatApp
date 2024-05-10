@@ -35,7 +35,7 @@ const Login = () => {
             setLoginccessful(data.loginStatus);
             setUuid(data.uniqueUserID);
             console.log(username + ' login was successful!');
-            console.log('Uuid: ' + data.uniqueUserID);
+            console.log('Uuid from data: ' + data.uniqueUserID);
 
         }
         catch (error) {
@@ -45,10 +45,6 @@ const Login = () => {
         }
 
     };
-
-    useEffect(() => {
-        console.log('Uuid: ' + uuid);
-    }, [uuid]);
 
     return (
         <div>
