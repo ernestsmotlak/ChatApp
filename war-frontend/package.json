@@ -36,5 +36,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.2.1"
+  },
+  "fallback": {
+    "path": "path-browserify",
+    "stream": "stream-browserify",
+    "querystring": "querystring-es3",
+    "http": "stream-http",
+    "zlib": "browserify-zlib",
+    "crypto": "crypto-browserify"
   }
 }
