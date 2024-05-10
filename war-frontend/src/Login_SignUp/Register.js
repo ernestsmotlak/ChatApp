@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -13,6 +12,17 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        // Client-side validation
+        if (!username || !password || !passwordAgain) {
+            setError('All fields are required.');
+            return;
+        }
+
+        if (password !== passwordAgain) {
+            setError('Passwords do not match.');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:3010/register', {
                 method: 'POST',
@@ -25,22 +35,16 @@ const Register = () => {
             if (!response.ok) {
                 const errorData = await response.json();
                 setRegistrationSuccessful(errorData.registrationReturn);
-                console.log('Prva ' + registrationSuccessful);
                 throw new Error(errorData.error);
             }
 
             const data = await response.json();
             setRegistrationSuccessful(data.registrationReturn);
             console.log('Registration of the user: ' + username + ' was successfull!');
-            console.log('Druga ' + registrationSuccessful);
-
             navigate('/login');
-
-        }
-        catch (error) {
+        } catch (error) {
             setError(error.message);
-            setRegistrationSuccessful(error.registrationReturn);
-            console.log('Treča ' + registrationSuccessful);
+            setRegistrationSuccessful(false);
         }
     };
 
@@ -48,27 +52,32 @@ const Register = () => {
         <div>
             <h2>Register here:</h2>
             <form className='container login-form w-25 bg-primary-subtle' onSubmit={handleSubmit}>
+                {/* Username input */}
                 <div className='row justify-content-center'>
                     <label className='form-label mt-2'>Insert your username:</label>
                     <input className='form-control-lg w-75 mb-3 login-form' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
+                {/* Password input */}
                 <div className='row justify-content-center'>
-                    <label className='form-label'>Insert you password:</label>
+                    <label className='form-label'>Insert your password:</label>
                     <input className='form-control-lg w-75 login-form' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+                {/* Password again input */}
                 <div className='row justify-content-center mt-3'>
                     <label className='form-label'>Insert the password again:</label>
                     <input className='form-control-lg w-75 login-form' type="password" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
                 </div>
-                <button
-                    className='login-form-button mt-3 mb-3 btn btn-primary'
-                    type="submit">
-                    Login
+                {/* Submit button */}
+                <button className='login-form-button mt-3 mb-3 btn btn-primary' type="submit">
+                    Register
                 </button>
             </form>
-            {registrationSuccessful ? (<span className='text-success fw-bold fs-3 mb-3'>Registration successful!</span>) : (null)}
+            {/* Display error message if any */}
+            {error && <span className='text-danger fw-bold fs-3 mb-3'>{error}</span>}
+            {/* Display success message if registration was successful */}
+            {registrationSuccessful && <span className='text-success fw-bold fs-3 mb-3'>Registration successful!</span>}
         </div>
     )
 }
 
-export default Register
+export default Register;
