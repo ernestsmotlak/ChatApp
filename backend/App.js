@@ -40,9 +40,9 @@ app.post('/register', (req, res) => {
 
         // If username doesn't exist, proceed with registration
         if (password === passwordAgain) {
-            const insertIntoUser = 'INSERT INTO User (Username, Password) VALUES (?, ?)';
+            const insertIntoUser = 'INSERT INTO User (Username, Password, Uuid) VALUES (?, ?, ?)';
 
-            db.run(insertIntoUser, [username, password], (err) => {
+            db.run(insertIntoUser, [username, password, generateUniqueUserID()], (err) => {
                 if (err) {
                     console.error('Error inserting username and password: ', err.message);
                     return res.status(500).json({ error: 'Internal server error!', registrationReturn: false });
@@ -56,6 +56,14 @@ app.post('/register', (req, res) => {
     });
 });
 
+function generateUniqueUserID() {
+    let uniqueID = '';
+    while (uniqueID.length < 64) {
+        uniqueID += Math.random().toString(36).substring(2, 15);
+    }
+    return uniqueID.substring(0, 64); // Trim to ensure the length is exactly 64
+}
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -67,10 +75,10 @@ app.post('/login', (req, res) => {
         }
 
         if (!user) {
-            return res.status(401).json({error: 'No user found.', loginStatus: false});
+            return res.status(401).json({ error: 'No user found.', loginStatus: false });
         }
 
-        res.json({message: 'Login successful. User ' + username + 'logged in successfully!', loginStatus: true});
+        res.json({ message: 'Login successful. User ' + username + 'logged in successfully!', loginStatus: true });
     });
 
 });
