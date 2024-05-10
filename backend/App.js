@@ -56,6 +56,25 @@ app.post('/register', (req, res) => {
     });
 });
 
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    const checkCredentials = 'SELECT Username FROM User WHERE Username = ? AND Password = ?';
+    db.get(checkCredentials, [username, password], (err, user) => {
+        if (err) {
+            console.error('Error executing query: ' + err.message);
+            return res.status(500).json({ error: 'Internal server error.', loginStatus: false });
+        }
+
+        if (!user) {
+            return res.status(401).json({error: 'No user found.', loginStatus: false});
+        }
+
+        res.json({message: 'Login successful. User ' + username + 'logged in successfully!', loginStatus: true});
+    });
+
+});
+
 
 // Start the server
 app.listen(port, () => {
