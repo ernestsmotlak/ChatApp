@@ -34,6 +34,8 @@ const Register = () => {
             console.log('Registration of the user: ' + username + ' was successfull!');
             console.log('Druga ' + registrationSuccessful);
 
+            navigate('/login');
+
         }
         catch (error) {
             setError(error.message);
@@ -64,6 +66,7 @@ const Register = () => {
                     Login
                 </button>
             </form>
+            {registrationSuccessful ? (<span className='text-success fw-bold fs-3 mb-3'>Registration successful!</span>) : (null)}
         </div>
     )
 }
