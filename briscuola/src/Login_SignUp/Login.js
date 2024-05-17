@@ -35,6 +35,7 @@ const Login = () => {
             setLoginccessful(data.loginStatus);
             setUuid(data.uniqueUserID);
             console.log(username + ' login was successful!');
+            setUuid(data.uniqueUserID);
             console.log('Uuid from data: ' + data.uniqueUserID);
 
         }
@@ -45,6 +46,7 @@ const Login = () => {
         }
 
     };
+
 
     return (
         <div>

@@ -9,7 +9,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        App here.
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/register' element={<Register />} />
