@@ -4,10 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Login = () => {
+const Login = ({ setUuid }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [uuid, setUuid] = useState('');
     const [loginSuccessful, setLoginccessful] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -36,7 +35,8 @@ const Login = () => {
             setUuid(data.uniqueUserID);
             console.log(username + ' login was successful!');
             setUuid(data.uniqueUserID);
-            console.log('Uuid from data: ' + data.uniqueUserID);
+            // console.log('Uuid from data: ' + data.uniqueUserID);
+            navigate(`/username/${data.uniqueUserID}`);
 
         }
         catch (error) {
