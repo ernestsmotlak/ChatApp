@@ -7,7 +7,6 @@ const app = express();
 const port = 3010;
 
 app.use(cors()); // Use cors middleware to enable CORS
-
 app.use(bodyParser.json());
 
 // Connect to SQLite database

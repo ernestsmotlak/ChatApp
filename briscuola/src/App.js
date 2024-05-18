@@ -9,12 +9,13 @@ import { useEffect } from 'react';
 import User from './Components/User';
 
 function App() {
-  const [uuid, setUuid] = useState('');
+  const [uuid, setUuid] = useState(null);
+  const [btnInLoginClicked, setBtnInLoginClicked] = useState(null);
 
   useEffect(() => {
     console.log('App.js uuid: ' + uuid);
-  }, [uuid]);
-
+    console.log('Btn clicked: ' + btnInLoginClicked);
+  }, [uuid, btnInLoginClicked]);
 
   return (
     <Router>
@@ -22,8 +23,10 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login setUuid={setUuid} />} />
-          <Route path={`/username/${uuid}`} element={<User />} />
+          <Route path='/login' element={<Login setUuid={setUuid} setBtnInLoginClicked={setBtnInLoginClicked} />} />
+          {uuid && btnInLoginClicked && (
+            <Route path={`/username/${uuid}`} element={<User />} />
+          )}
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>

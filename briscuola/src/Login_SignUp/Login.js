@@ -1,10 +1,10 @@
 // import { json } from 'express';
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigationType, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Login = ({ setUuid }) => {
+const Login = ({ setUuid, setBtnInLoginClicked }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginSuccessful, setLoginccessful] = useState(null);
@@ -36,7 +36,12 @@ const Login = ({ setUuid }) => {
             console.log(username + ' login was successful!');
             setUuid(data.uniqueUserID);
             // console.log('Uuid from data: ' + data.uniqueUserID);
+
+            setBtnInLoginClicked(true);
             navigate(`/username/${data.uniqueUserID}`);
+            
+
+            // navigate('/username');
 
         }
         catch (error) {
