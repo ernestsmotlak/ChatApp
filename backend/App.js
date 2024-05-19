@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors'); // Import the cors middleware
+const cors = require('cors');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
 const port = 3010;
 
-app.use(cors()); // Use cors middleware to enable CORS
+app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to SQLite database
@@ -15,6 +17,15 @@ const db = new sqlite3.Database('War-database.db', sqlite3.OPEN_READWRITE, (err)
         console.error('Error connecting to database:', err.message);
     } else {
         console.log('Connected to the SQLite database.');
+    }
+});
+
+// HTTP server setup
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
     }
 });
 
@@ -77,13 +88,29 @@ app.post('/login', (req, res) => {
             return res.status(401).json({ error: 'No user found.', loginStatus: false });
         }
 
-        res.json({ message: 'Login successful. User ' + username + 'logged in successfully!', loginStatus: true, uniqueUserID: user.Uuid });
+        res.json({ message: 'Login successful. User ' + username + ' logged in successfully!', loginStatus: true, uniqueUserID: user.Uuid });
     });
 
 });
 
+// Socket.io setup
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('join_room', (room) => {
+        socket.join(room);
+        console.log(`User joined room: ${room}`);
+    });
+    socket.on('send_message', ({ room, message }) => {
+        io.to(room).emit('receive_message', message);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
