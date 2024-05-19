@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 import User from './Components/User';
 
 function App() {
-  const [uuid, setUuid] = useState(null);
-  const [btnInLoginClicked, setBtnInLoginClicked] = useState(null);
+  const [uuid, setUuid] = useState(localStorage.getItem('uuid'));
+  const [btnInLoginClicked, setBtnInLoginClicked] = useState(localStorage.getItem('btnInLoginClicked') === 'true');
 
   useEffect(() => {
     console.log('App.js uuid: ' + uuid);

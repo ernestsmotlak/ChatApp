@@ -32,14 +32,19 @@ const Login = ({ setUuid, setBtnInLoginClicked }) => {
 
             const data = await response.json();
             setLoginccessful(data.loginStatus);
-            setUuid(data.uniqueUserID);
             console.log(username + ' login was successful!');
             setUuid(data.uniqueUserID);
             // console.log('Uuid from data: ' + data.uniqueUserID);
 
+
+            localStorage.setItem('uuid', data.uniqueUserID); // Store uuid in localStorage
+            localStorage.setItem('btnInLoginClicked', 'true');
+            console.log('Ls uuid: ' + localStorage.getItem('uuid'));
+            console.log('Ls btn: ' + localStorage.getItem('btnInLoginClicked'));
+
             setBtnInLoginClicked(true);
             navigate(`/username/${data.uniqueUserID}`);
-            
+
 
             // navigate('/username');
 
