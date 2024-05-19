@@ -90,7 +90,6 @@ app.post('/login', (req, res) => {
 
         res.json({ message: 'Login successful. User ' + username + ' logged in successfully!', loginStatus: true, uniqueUserID: user.Uuid });
     });
-
 });
 
 // Socket.io setup
@@ -102,7 +101,8 @@ io.on('connection', (socket) => {
         console.log(`User joined room: ${room}`);
     });
     socket.on('send_message', ({ room, message }) => {
-        io.to(room).emit('receive_message', message);
+        // io.to(room).emit('receive_message', message);
+        socket.broadcast.to(room).emit('receive_message', message);
     });
 
     socket.on('disconnect', () => {
