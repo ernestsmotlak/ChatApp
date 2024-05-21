@@ -76,11 +76,33 @@ const User = () => {
                   key={index}
                   className={`d-flex ${data.isSent ? 'justify-content-end' : 'justify-content-start'} mb-2`}
                 >
-                  <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'}`} role="alert">
-                    {data.message}
-                    <br />
-                    <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
+
+                  <div>
+                    <div class="row">
+                      <div class="col">
+                        <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'} mb-1 mt-2`} role="alert">
+                          {data.message}
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div className="message-details">
+                          <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+
+                  {/* <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'}`} role="alert">
+                    {data.message}
+
+                  </div>
+                  <div className="message-details">
+                    <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
+                  </div> */}
                 </div>
               ))}
             </div>
