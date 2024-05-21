@@ -76,44 +76,33 @@ const User = () => {
                   key={index}
                   className={`d-flex ${data.isSent ? 'justify-content-end' : 'justify-content-start'} mb-2`}
                 >
-
                   <div>
-                    <div class="row">
-                      <div class="col">
+                    <div className="row">
+                      <div className="col">
                         <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'} mb-1 mt-2`} role="alert">
                           {data.message}
-
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col">
+                    <div className="row">
+                      <div className="col">
                         <div className="message-details">
-                          <small>{new Date(data.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - <strong>{data.username}</strong> </small>
+                          <small>{new Date(data.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - <strong>{data.username}</strong></small>
                         </div>
                       </div>
                     </div>
                   </div>
-
-
-                  {/* <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'}`} role="alert">
-                    {data.message}
-
-                  </div>
-                  <div className="message-details">
-                    <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
-                  </div> */}
                 </div>
               ))}
             </div>
             <div className="card-footer">
               <div className="input-group">
-                <input
-                  type="text"
+                <textarea
                   className="form-control"
                   placeholder="Type your message..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  rows="3" // You can adjust the number of rows as needed
                 />
                 <button className="btn btn-primary" onClick={sendMessage}>Send Message</button>
               </div>
