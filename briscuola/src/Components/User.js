@@ -89,7 +89,7 @@ const User = () => {
                     <div class="row">
                       <div class="col">
                         <div className="message-details">
-                          <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
+                          <small>{new Date(data.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - <strong>{data.username}</strong> </small>
                         </div>
                       </div>
                     </div>
