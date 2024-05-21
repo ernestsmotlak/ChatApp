@@ -41,51 +41,60 @@ const User = () => {
   return (
     <div>
       {!joinedRoom ? (
-        <div className='w-25 mt-5' style={{margin: '0 auto'}}>
-          <div class="card">
-            <h5 class="card-header">Room</h5>
-            <div class="card-body">
-              <h5 class="card-title">Choose a room </h5>
-              <p class="card-text">Choose the room that you preffer to join:</p>
+        <div className='w-25 mt-5' style={{ margin: '0 auto' }}>
+          <div className="card">
+            <h5 className="card-header">Room</h5>
+            <div className="card-body">
+              <h5 className="card-title">Choose a room</h5>
+              <p className="card-text">Choose the room that you prefer to join:</p>
               <input
                 type="text"
                 placeholder="Room ID"
                 value={room}
                 onChange={(e) => setRoom(e.target.value)}
-                className='fs-5'
+                className='fs-5 form-control'
               />
-              <button className='mb-1 ms-2 btn btn-success' onClick={joinRoom}>Join Room</button>
+              <button className='ms-2 btn btn-success mt-2' onClick={joinRoom}>Join Room</button>
             </div>
-            <div class="card-footer" style={{height: '40px'}}>
+            <div className="card-footer" style={{ height: '40px' }}>
             </div>
-
           </div>
         </div>
       ) : (
-        <div>
-          <div>
-            <h3>Received messages:</h3>
-            {filteredReceivedMessages.map((msg, index) => (
-              <p key={index}>{msg}</p>
-            ))}
+        <div className="container mt-5">
+          <div className="card">
+            <div className="card-header">
+              <h5>Chat</h5>
+            </div>
+            <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+              {receivedMessages.map((msg, index) => (
+                <div key={index} className="d-flex justify-content-start mb-2">
+                  <div className="alert alert-secondary" role="alert">
+                    {msg}
+                  </div>
+                </div>
+              ))}
+              {sentMessages.map((msg, index) => (
+                <div key={index} className="d-flex justify-content-end mb-2">
+                  <div className="alert alert-primary" role="alert">
+                    {msg}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="card-footer">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Type your message..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+                <button className="btn btn-primary" onClick={sendMessage}>Send Message</button>
+              </div>
+            </div>
           </div>
-
-          <br />
-
-          <div>
-            <h3>Sent messages:</h3>
-            {sentMessages.map((msg, index) => (
-              <p key={index}>{msg}</p>
-            ))}
-          </div>
-
-          <input
-            type="text"
-            placeholder="Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button onClick={sendMessage}>Send Message</button>
         </div>
       )}
     </div>
