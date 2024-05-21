@@ -6,13 +6,13 @@ const socket = io('http://localhost:3010');
 const User = () => {
   const [room, setRoom] = useState('');
   const [message, setMessage] = useState('');
-  const [sentMessages, setSentMessages] = useState([]);
-  const [receivedMessages, setReceivedMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [joinedRoom, setJoinedRoom] = useState(false);
+  const username = 'My Username'; // Replace with dynamic username if needed
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
-      setReceivedMessages((prevMessages) => [...prevMessages, data]);
+      setMessages((prevMessages) => [...prevMessages, { ...data, isSent: false }]);
     });
 
     return () => {
@@ -30,21 +30,18 @@ const User = () => {
   const sendMessage = () => {
     if (message !== '') {
       const data = {
-        room: room,
-        message: message,
-        username: 'My Username',
-        time: new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
-      }
+        room,
+        message,
+        username,
+        time: new Date().toISOString(),
+      };
       socket.emit('send_message', data);
-      setSentMessages((prevMessages) => [...prevMessages, data]); // Update sentMessages array
+      setMessages((prevMessages) => [...prevMessages, { ...data, isSent: true }]);
       setMessage('');
     }
   };
 
-  // Filter out messages sent by the current user from the received messages
-  const filteredReceivedMessages = receivedMessages.filter(msg => !sentMessages.includes(msg));
+  const sortedMessages = messages.sort((a, b) => new Date(a.time) - new Date(b.time));
 
   return (
     <div>
@@ -64,8 +61,7 @@ const User = () => {
               />
               <button className='ms-2 btn btn-success mt-2' onClick={joinRoom}>Join Room</button>
             </div>
-            <div className="card-footer" style={{ height: '40px' }}>
-            </div>
+            <div className="card-footer" style={{ height: '40px' }} />
           </div>
         </div>
       ) : (
@@ -75,22 +71,16 @@ const User = () => {
               <h5>Chat</h5>
             </div>
             <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
-              {receivedMessages.map((data, index) => (
-                <div key={index} className="d-flex justify-content-start mb-2">
-                  <div className="alert alert-secondary" role="alert">
+              {sortedMessages.map((data, index) => (
+                <div
+                  key={index}
+                  className={`d-flex ${data.isSent ? 'justify-content-end' : 'justify-content-start'} mb-2`}
+                >
+                  <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'}`} role="alert">
                     {data.message}
-                  </div><br/><br/>
-                  {data.time}
-                  {data.username}
-                </div>
-              ))}
-              {sentMessages.map((data, index) => (
-                <div key={index} className="d-flex justify-content-end mb-2">
-                  <div className="alert alert-primary" role="alert">
-                    {data.message}
-                    </div><br/><br/>
-                  {data.time}
-                  {data.username}
+                    <br />
+                    <small>{new Date(data.time).toLocaleTimeString()} - {data.username}</small>
+                  </div>
                 </div>
               ))}
             </div>
