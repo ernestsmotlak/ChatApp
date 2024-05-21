@@ -100,9 +100,9 @@ io.on('connection', (socket) => {
         socket.join(room);
         console.log(`User joined room: ${room}`);
     });
-    socket.on('send_message', ({ room, message }) => {
+    socket.on('send_message', (data) => {
         // io.to(room).emit('receive_message', message);
-        socket.broadcast.to(room).emit('receive_message', message);
+        socket.broadcast.to(data.room).emit('receive_message', data);
     });
 
     socket.on('disconnect', () => {

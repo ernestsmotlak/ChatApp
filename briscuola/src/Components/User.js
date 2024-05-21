@@ -11,8 +11,8 @@ const User = () => {
   const [joinedRoom, setJoinedRoom] = useState(false);
 
   useEffect(() => {
-    socket.on('receive_message', (message) => {
-      setReceivedMessages((prevMessages) => [...prevMessages, message]);
+    socket.on('receive_message', (data) => {
+      setReceivedMessages((prevMessages) => [...prevMessages, data]);
     });
 
     return () => {
@@ -29,8 +29,16 @@ const User = () => {
 
   const sendMessage = () => {
     if (message !== '') {
-      socket.emit('send_message', { room, message });
-      setSentMessages((prevMessages) => [...prevMessages, message]); // Update sentMessages array
+      const data = {
+        room: room,
+        message: message,
+        username: 'My Username',
+        time: new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      }
+      socket.emit('send_message', data);
+      setSentMessages((prevMessages) => [...prevMessages, data]); // Update sentMessages array
       setMessage('');
     }
   };
@@ -67,18 +75,22 @@ const User = () => {
               <h5>Chat</h5>
             </div>
             <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
-              {receivedMessages.map((msg, index) => (
+              {receivedMessages.map((data, index) => (
                 <div key={index} className="d-flex justify-content-start mb-2">
                   <div className="alert alert-secondary" role="alert">
-                    {msg}
-                  </div>
+                    {data.message}
+                  </div><br/><br/>
+                  {data.time}
+                  {data.username}
                 </div>
               ))}
-              {sentMessages.map((msg, index) => (
+              {sentMessages.map((data, index) => (
                 <div key={index} className="d-flex justify-content-end mb-2">
                   <div className="alert alert-primary" role="alert">
-                    {msg}
-                  </div>
+                    {data.message}
+                    </div><br/><br/>
+                  {data.time}
+                  {data.username}
                 </div>
               ))}
             </div>
