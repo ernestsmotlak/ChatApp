@@ -41,14 +41,25 @@ const User = () => {
   return (
     <div>
       {!joinedRoom ? (
-        <div>
-          <input
-            type="text"
-            placeholder="Room ID"
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
-          />
-          <button onClick={joinRoom}>Join Room</button>
+        <div className='w-25 mt-5' style={{margin: '0 auto'}}>
+          <div class="card">
+            <h5 class="card-header">Room</h5>
+            <div class="card-body">
+              <h5 class="card-title">Choose a room </h5>
+              <p class="card-text">Choose the room that you preffer to join:</p>
+              <input
+                type="text"
+                placeholder="Room ID"
+                value={room}
+                onChange={(e) => setRoom(e.target.value)}
+                className='fs-5'
+              />
+              <button className='mb-1 ms-2 btn btn-success' onClick={joinRoom}>Join Room</button>
+            </div>
+            <div class="card-footer" style={{height: '40px'}}>
+            </div>
+
+          </div>
         </div>
       ) : (
         <div>
