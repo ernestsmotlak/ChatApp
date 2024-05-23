@@ -189,6 +189,7 @@ const User = () => {
             // style={{ backgroundColor: '#e5e5e5' }}
             style={{ backgroundColor: '#e5e5e5', borderColor: '#cdcccd', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px' }}>
             Code available at:
+            
             &nbsp;
             <a className="text-dark" href="https://github.com/ernestsmotlak/WarCardGame">
               {/* <i className="bi bi-github" style={{ width: '20px', height: '20px' }}></i> */}
