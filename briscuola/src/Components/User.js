@@ -166,6 +166,13 @@ const User = () => {
               </div>
             </div>
           </div>
+
+          <div
+            className="text-center p-3 bg-success-subtle fixed-bottom">
+            Code available at:
+
+            <a class="text-dark" href="https://github.com/ernestsmotlak/WarCardGame"> MDBootstrap.com </a>
+          </div>
         </div>
       )}
     </div>
