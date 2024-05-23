@@ -51,25 +51,27 @@ const Register = () => {
 
     return (
         <div>
-            <h2 className='mt-3 mb-3'>Register here:</h2>
-            <form className='container login-form w-25 bg-primary-subtle' onSubmit={handleSubmit}>
+            <h2 className='mt-3 mb-3 header'>Register here:</h2>
+            <form className='container login-form w-25'
+                style={{ backgroundColor: '#E5E5E5' }}
+                onSubmit={handleSubmit}>
                 {/* Username input */}
                 <div className='row justify-content-center'>
-                    <label className='form-label mt-2'>Insert your username:</label>
+                    <label className='form-label mt-3' style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Insert your username:</label>
                     <input className='form-control-lg w-75 mb-3 login-form' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 {/* Password input */}
                 <div className='row justify-content-center'>
-                    <label className='form-label'>Insert your password:</label>
+                    <label className='form-label' style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Insert your password:</label>
                     <input className='form-control-lg w-75 login-form' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 {/* Password again input */}
                 <div className='row justify-content-center mt-3'>
-                    <label className='form-label'>Insert the password again:</label>
+                    <label className='form-label' style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Insert the password again:</label>
                     <input className='form-control-lg w-75 login-form' type="password" value={passwordAgain} onChange={(e) => setPasswordAgain(e.target.value)} />
                 </div>
                 {/* Submit button */}
-                <button className='login-form-button mt-3 mb-3 btn btn-primary' type="submit">
+                <button className='login-form-button mt-3 mb-3 btn btn-secondary' type="submit">
                     Register
                 </button>
             </form>
