@@ -28,10 +28,15 @@ const User = () => {
   };
 
   const sendMessage = () => {
-    if (message !== '') {
+    if (message.trim() !== '') {
+      const cleanedMessage = message
+        .split('\n')
+        .filter(line => line.trim() !== '')
+        .join('\n');
+      
       const data = {
         room,
-        message,
+        message: cleanedMessage,
         username,
         time: new Date().toISOString(),
       };
@@ -74,13 +79,18 @@ const User = () => {
               {sortedMessages.map((data, index) => (
                 <div
                   key={index}
-                  className={`d-flex ${data.isSent ? 'justify-content-end' : 'justify-content-start'} mb-2`}
+                  className={`d-flex ${data.isSent ? 'justify-content-end me-2' : 'justify-content-start'} mb-2`}
                 >
                   <div>
                     <div className="row">
                       <div className="col">
-                        <div className={`alert ${data.isSent ? 'alert-success' : 'alert-danger'} mb-1 mt-2`} role="alert">
-                          {data.message}
+                        <div className={`alert ${data.isSent ? 'alert-success pe-5' : 'alert-danger'} mb-1 mt-2`} role="alert">
+                          {data.message.split('\n').map((line, i) => (
+                            <React.Fragment key={i}>
+                              {line}
+                              <br />
+                            </React.Fragment>
+                          ))}
                         </div>
                       </div>
                     </div>
