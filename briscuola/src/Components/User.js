@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 const socket = io('http://localhost:3010', {
   reconnection: true,
@@ -118,12 +119,12 @@ const User = () => {
           </div>
         </div>
       ) : (
-        <div className="container mt-5">
+        <div className="container mt-4">
           <div className="card">
             <div className="card-header">
               <h5>Chat</h5>
             </div>
-            <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll', scrollBehavior: 'smooth' }} ref={messageContainerRef}>
+            <div className="card-body" style={{ maxHeight: '420px', overflowY: 'scroll', scrollBehavior: 'smooth' }} ref={messageContainerRef}>
               {sortedMessages.map((data, index) => (
                 <div
                   key={index}
@@ -168,10 +169,12 @@ const User = () => {
           </div>
 
           <div
-            className="text-center p-3 bg-success-subtle fixed-bottom">
+            className="text-center p-3 fixed-bottom border border-secondary" style={{ backgroundColor: '#e5e5e5' }}>
             Code available at:
 
-            <a class="text-dark" href="https://github.com/ernestsmotlak/WarCardGame"> MDBootstrap.com </a>
+            <a class="text-dark" href="https://github.com/ernestsmotlak/WarCardGame">
+              <i class="bi bi-github"></i>
+            </a>
           </div>
         </div>
       )}
