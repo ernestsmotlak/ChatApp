@@ -3,10 +3,12 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:3010', {
   reconnection: true,
-  reconnectionAttempts: Infinity, // Try to reconnect indefinitely
-  reconnectionDelay: 1000, // Start with a 1 second delay
-  reconnectionDelayMax: 5000, // Increase delay up to 5 seconds
-  randomizationFactor: 0.5 // Randomize the reconnection delay by 50%
+  reconnectionAttempts: Infinity,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 10000,
+  randomizationFactor: 0.5,
+  pingInterval: 25000, // Send a ping every 25 seconds
+  pingTimeout: 60000 // Close the connection if no response is received within 60 seconds
 });
 
 const User = () => {
