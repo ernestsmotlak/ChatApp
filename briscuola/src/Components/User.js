@@ -33,7 +33,7 @@ const User = () => {
         .split('\n')
         .filter(line => line.trim() !== '')
         .join('\n');
-      
+
       const data = {
         room,
         message: cleanedMessage,
@@ -84,7 +84,7 @@ const User = () => {
                   <div>
                     <div className="row">
                       <div className="col">
-                        <div className={`alert ${data.isSent ? 'alert-success pe-5' : 'alert-danger'} mb-1 mt-2`} role="alert">
+                        <div className={`alert text-start ${data.isSent ? 'alert-success pe-5' : 'alert-danger'} mb-1 mt-2`} role="alert">
                           {data.message.split('\n').map((line, i) => (
                             <React.Fragment key={i}>
                               {line}
