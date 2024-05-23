@@ -60,17 +60,19 @@ const Login = ({ setUuid, setBtnInLoginClicked }) => {
 
     return (
         <div>
-            <h2>Login</h2>
-            <form className='container login-form w-25 bg-primary-subtle' onSubmit={handleSubmit}>
+            <h2 className='header mt-5 mb-4'>Login</h2>
+            <form className='container login-form w-25'
+                onSubmit={handleSubmit}
+                style={{ backgroundColor: '#e5e5e5', borderColor: '#cdcccd', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px' }}>
                 <div className='row justify-content-center'>
-                    <label className='form-label mt-2'>Insert your username:</label>
-                    <input className='form-control-lg w-75 mb-3 login-form' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <label className='form-label mt-3'>Insert your username:</label>
+                    <input className='form-control-lg w-75 mb-3 login-form' style={{backgroundColor: '#F7F7F7'}} type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div className='row justify-content-center'>
                     <label className='form-label'>Insert you password:</label>
-                    <input className='form-control-lg w-75 login-form' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className='form-control-lg w-75 login-form' style={{backgroundColor: '#F7F7F7'}} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button className='btn btn-danger mt-3 mb-4' type='submit'>Login.</button>
+                <button className='btn btn-secondary mt-3 mb-3' type='submit'>Login.</button>
             </form>
             <div className="text-center p-3 fixed-bottom"
                 // style={{ backgroundColor: '#e5e5e5' }}

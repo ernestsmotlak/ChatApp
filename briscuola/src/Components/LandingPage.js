@@ -16,7 +16,7 @@ const LandingPage = () => {
     return (
         <div>
             <div className='w-50' style={{ margin: '0 auto' }}>
-                <h2 className='mt-5 text-outline'>Chat app made with Socket.io</h2>
+                <h2 className='mt-5 header'>Chat app made with Socket.io</h2>
                 <div class="card text-center mt-4 background">
                     <div class="card-header" style={{ height: '40px' }}>
 

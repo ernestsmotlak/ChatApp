@@ -113,7 +113,7 @@ const User = () => {
                 onChange={(e) => setRoom(e.target.value)}
                 className='fs-5 form-control'
               />
-              <button className='ms-2 btn btn-success mt-2' onClick={joinRoom}>Join Room</button>
+              <button className='ms-2 btn btn-dark mt-2' onClick={joinRoom}>Join Room</button>
             </div>
             <div className="card-footer" style={{ height: '40px' }} />
           </div>
@@ -175,7 +175,12 @@ const User = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   rows="3" // You can adjust the number of rows as needed
                 />
-                <button className="btn btn-primary" onClick={sendMessage}>Send Message</button>
+                {/* <button className="btn btn-secondary" onClick={sendMessage}>Send Message</button> */}
+                <button className="btn btn-secondary" onClick={sendMessage}>
+                  <svg style={{ width: '25px', height: 'auto', marginLeft: '20px', marginRight: '20px' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
