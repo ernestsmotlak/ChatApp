@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3010');
+const socket = io('http://localhost:3010', {
+  reconnection: true,
+  reconnectionAttempts: Infinity, // Try to reconnect indefinitely
+  reconnectionDelay: 1000, // Start with a 1 second delay
+  reconnectionDelayMax: 5000, // Increase delay up to 5 seconds
+  randomizationFactor: 0.5 // Randomize the reconnection delay by 50%
+});
 
 const User = () => {
   const [room, setRoom] = useState('');
@@ -9,16 +15,56 @@ const User = () => {
   const [messages, setMessages] = useState([]);
   const [joinedRoom, setJoinedRoom] = useState(false);
   const username = 'My Username'; // Replace with dynamic username if needed
+  const messageContainerRef = useRef(null);
 
   useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    socket.on('reconnect', (attemptNumber) => {
+      console.log(`Reconnected to server after ${attemptNumber} attempts`);
+      if (joinedRoom && room) {
+        socket.emit('join_room', room);
+      }
+    });
+
+    socket.on('reconnect_attempt', (attemptNumber) => {
+      console.log(`Reconnection attempt ${attemptNumber}`);
+    });
+
+    socket.on('reconnect_error', (error) => {
+      console.error('Reconnection error:', error);
+    });
+
+    socket.on('reconnect_failed', () => {
+      console.error('Reconnection failed');
+    });
+
     socket.on('receive_message', (data) => {
       setMessages((prevMessages) => [...prevMessages, { ...data, isSent: false }]);
     });
 
     return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('reconnect');
+      socket.off('reconnect_attempt');
+      socket.off('reconnect_error');
+      socket.off('reconnect_failed');
       socket.off('receive_message');
     };
-  }, []);
+  }, [joinedRoom, room]);
+
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const joinRoom = () => {
     if (room !== '') {
@@ -75,7 +121,7 @@ const User = () => {
             <div className="card-header">
               <h5>Chat</h5>
             </div>
-            <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+            <div className="card-body" style={{ maxHeight: '400px', overflowY: 'scroll', scrollBehavior: 'smooth' }} ref={messageContainerRef}>
               {sortedMessages.map((data, index) => (
                 <div
                   key={index}
@@ -84,7 +130,7 @@ const User = () => {
                   <div>
                     <div className="row">
                       <div className="col">
-                        <div className={`alert text-start ${data.isSent ? 'alert-success pe-5' : 'alert-danger'} mb-1 mt-2`} role="alert">
+                        <div className={`alert text-start ${data.isSent ? 'alert-success ms-5' : 'alert-danger'} mb-1 mt-2`} role="alert">
                           {data.message.split('\n').map((line, i) => (
                             <React.Fragment key={i}>
                               {line}
@@ -96,7 +142,7 @@ const User = () => {
                     </div>
                     <div className="row">
                       <div className="col">
-                        <div className="message-details">
+                        <div className={`${data.isSent ? 'text-end me-3' : 'text-start ms-3'} mb-1 mt-2`}>
                           <small>{new Date(data.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - <strong>{data.username}</strong></small>
                         </div>
                       </div>
