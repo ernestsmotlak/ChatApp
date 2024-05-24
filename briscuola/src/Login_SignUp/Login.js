@@ -66,14 +66,16 @@ const Login = ({ setUuid, setBtnInLoginClicked }) => {
                 style={{ backgroundColor: '#e5e5e5', borderColor: '#cdcccd', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px' }}>
                 <div className='row justify-content-center'>
                     <label className='form-label mt-3' style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Insert your username:</label>
-                    <input className='form-control-lg w-75 mb-3 login-form' style={{backgroundColor: '#F7F7F7'}} type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input className='form-control-lg w-75 mb-3 login-form' style={{ backgroundColor: '#F7F7F7' }} type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div className='row justify-content-center'>
                     <label className='form-label' style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Insert you password:</label>
-                    <input className='form-control-lg w-75 login-form' style={{backgroundColor: '#F7F7F7'}} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className='form-control-lg w-75 login-form' style={{ backgroundColor: '#F7F7F7' }} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button className='btn btn-secondary mt-3 mb-3' type='submit'>Login.</button>
             </form>
+            <br />
+            {error && <span className='text-danger fw-bold fs-3 mb-3'>{error}</span>}
             <div className="text-center p-3 fixed-bottom"
                 // style={{ backgroundColor: '#e5e5e5' }}
                 style={{ backgroundColor: '#e5e5e5', borderColor: '#cdcccd', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px' }}>
