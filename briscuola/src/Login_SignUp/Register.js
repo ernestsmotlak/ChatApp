@@ -76,6 +76,7 @@ const Register = () => {
                 </button>
             </form>
             {/* Display error message if any */}
+            <br/>
             {error && <span className='text-danger fw-bold fs-3 mb-3'>{error}</span>}
             {/* Display success message if registration was successful */}
             {registrationSuccessful && <span className='text-success fw-bold fs-3 mb-3'>Registration successful!</span>}
