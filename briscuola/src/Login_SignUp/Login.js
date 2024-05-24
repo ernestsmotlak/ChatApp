@@ -15,7 +15,7 @@ const Login = ({ setUuid, setBtnInLoginClicked, setUsernameFromLogin }) => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3010/login', {
+            const response = await fetch('http://84.247.184.37:3020/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
