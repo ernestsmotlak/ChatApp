@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { NavigationType, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Login = ({ setUuid, setBtnInLoginClicked }) => {
+const Login = ({ setUuid, setBtnInLoginClicked, setUsernameFromLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginSuccessful, setLoginccessful] = useState(null);
@@ -33,10 +33,11 @@ const Login = ({ setUuid, setBtnInLoginClicked }) => {
             const data = await response.json();
             setLoginccessful(data.loginStatus);
             console.log(username + ' login was successful!');
+
             setUuid(data.uniqueUserID);
-            // console.log('Uuid from data: ' + data.uniqueUserID);
+            setUsernameFromLogin(data.usernameLogin);
 
-
+            localStorage.setItem('usernameFromLogin', data.usernameLogin);
             localStorage.setItem('uuid', data.uniqueUserID); // Store uuid in localStorage
             localStorage.setItem('btnInLoginClicked', 'true');
             console.log('Ls uuid: ' + localStorage.getItem('uuid'));
@@ -46,7 +47,6 @@ const Login = ({ setUuid, setBtnInLoginClicked }) => {
             navigate(`/username/${data.uniqueUserID}`);
 
 
-            // navigate('/username');
 
         }
         catch (error) {

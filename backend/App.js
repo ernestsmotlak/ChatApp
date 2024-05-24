@@ -88,7 +88,7 @@ app.post('/login', (req, res) => {
             return res.status(401).json({ error: 'No user found.', loginStatus: false });
         }
 
-        res.json({ message: 'Login successful. User ' + username + ' logged in successfully!', loginStatus: true, uniqueUserID: user.Uuid });
+        res.json({ message: 'Login successful. User ' + username + ' logged in successfully!', loginStatus: true, uniqueUserID: user.Uuid, usernameLogin: user.Username });
     });
 });
 

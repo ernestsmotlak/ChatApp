@@ -12,12 +12,12 @@ const socket = io('http://localhost:3010', {
   pingTimeout: 60000 // Close the connection if no response is received within 60 seconds
 });
 
-const User = () => {
+const User = ({ usernameFromLogin }) => {
   const [room, setRoom] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [joinedRoom, setJoinedRoom] = useState(false);
-  const username = 'My Username'; // Replace with dynamic username if needed
+  const username = usernameFromLogin; // Replace with dynamic username if needed
   const messageContainerRef = useRef(null);
 
   useEffect(() => {
@@ -189,7 +189,7 @@ const User = () => {
             // style={{ backgroundColor: '#e5e5e5' }}
             style={{ backgroundColor: '#e5e5e5', borderColor: '#cdcccd', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px' }}>
             Code available at:
-            
+
             &nbsp;
             <a className="text-dark" href="https://github.com/ernestsmotlak/WarCardGame">
               {/* <i className="bi bi-github" style={{ width: '20px', height: '20px' }}></i> */}

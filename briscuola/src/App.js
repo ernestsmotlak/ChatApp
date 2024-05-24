@@ -11,6 +11,7 @@ import User from './Components/User';
 function App() {
   const [uuid, setUuid] = useState(localStorage.getItem('uuid'));
   const [btnInLoginClicked, setBtnInLoginClicked] = useState(localStorage.getItem('btnInLoginClicked') === 'true');
+  const [usernameFromLogin, setUsernameFromLogin] = useState(localStorage.getItem('usernameFromLogin'));
 
   useEffect(() => {
     console.log('App.js uuid: ' + uuid);
@@ -23,9 +24,9 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login setUuid={setUuid} setBtnInLoginClicked={setBtnInLoginClicked} />} />
+          <Route path='/login' element={<Login setUuid={setUuid} setBtnInLoginClicked={setBtnInLoginClicked} setUsernameFromLogin={setUsernameFromLogin} />} />
           {uuid && btnInLoginClicked && (
-            <Route path={`/username/${uuid}`} element={<User />} />
+            <Route path={`/username/${uuid}`} element={<User usernameFromLogin={usernameFromLogin} />} />
           )}
           <Route path='*' element={<NotFound />} />
         </Routes>
