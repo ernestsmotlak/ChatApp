@@ -2,31 +2,17 @@
 
 [Frontend available here](http://84.247.184.37:3021/)
 
-[API available here](http://84.247.184.37:3020/)
+[API available here](http://84.247.184.37:302)
 
 Timetable website for bus transports in Koper.
 
-### Made with React, Bootstrap, and Node.js
+### Made with React, Node.js and SqLite
 ---
 ### How to run
- - Run the app.js in the 'Urniki' folder.
- - Run the React app inside of the 'tt' folder. 
+ - Run the app.js in the 'backend' folder.
+ - Run the React app inside of the 'briscuola' folder. 
 ---
 ## Screenshots
-
-### Backend
-
-##### API
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.10.07.png" width="600px"</img> 
-</div>
-
-##### API Linija1 Koper
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.10.44.png" width="600px"</img> 
-</div>
-
----
 
 ### Frontend
 
@@ -34,7 +20,7 @@ Timetable website for bus transports in Koper.
 
 ##### Landing page
 <div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.51.03.png" width="600px"</img> 
+    <img src="Screenshots/Screenshot 2024-06-15 at 15.58.15.png" width="700px"</img> 
 </div>
 
 ##### The user chooses a bus line
@@ -55,35 +41,6 @@ Timetable website for bus transports in Koper.
 ##### Upon choosing the entry and exit bus stations, the arrival times are shown
 <div align="center">
     <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.52.32.png" width="600px"</img> 
-</div>
-
----
-
-## Mobile view
-
-##### Landing page
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.29.39.png" width="300px"</img> 
-</div>
-
-##### Example of opening 'Linija2'
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.30.45.png" width="300px"</img> 
-</div>
-
-##### Linija2
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.30.54.png" width="300px"</img> 
-</div>
-
-##### Picking the entry and exit station on Linija2
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.31.15.png" width="300px"</img> 
-</div>
-
-##### Picking the entry and exit station on Linija8
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 13.31.54.png" width="300px"</img> 
 </div>
 
 ---
