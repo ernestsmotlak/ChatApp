@@ -1,4 +1,4 @@
-# Timetable Bus Transport App
+# Chat App made with Socket.io
 
 [Frontend available here](http://84.247.184.37:3021/)
 
@@ -9,38 +9,40 @@ Timetable website for bus transports in Koper.
 ### Made with React, Node.js and SqLite
 ---
 ### How to run
- - Run the app.js in the 'backend' folder.
+ - Run the App.js in the 'backend' folder.
  - Run the React app inside of the 'briscuola' folder. 
 ---
 ## Screenshots
 
-### Frontend
-
-## Web view
-
-##### Landing page
+##### Landing Page
 <div align="center">
     <img src="Screenshots/Screenshot 2024-06-15 at 15.58.15.png" width="700px"</img> 
 </div>
 
-##### The user chooses a bus line
+##### The user either logs in or signs up
+###### Registration page
 <div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.51.25.png" width="600px"</img> 
-</div>
-
-##### Example of a bus line
-<div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.51.40.png" width="600px"</img> 
+    <img src="Screenshots/Screenshot 2024-06-15 at 15.58.22.png" width="600px"</img> 
 </div>
 
 ##### Another example of a bus line
 <div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.52.42.png" width="600px"</img> 
+    <img src="Screenshots/Screenshot 2024-06-15 at 15.58.35.png" width="600px"</img> 
 </div>
 
-##### Upon choosing the entry and exit bus stations, the arrival times are shown
+##### The user then selects a room
 <div align="center">
-    <img src="tt/Screenshots/Screenshot 2024-06-15 at 12.52.32.png" width="600px"</img> 
+    <img src="Screenshots/Screenshot 2024-06-15 at 15.58.51.png" width="600px"</img> 
+</div>
+
+##### If the other user enter the same room name, the users can then send eachother messages
+<div align="center">
+    <img src="Screenshots/Screenshot 2024-06-15 at 16.00.19.png" width="600px"</img> 
+</div>
+
+##### The database is very simple, as it only stores the unhashed password, username and a randomly generated unique user id.
+<div align="center">
+    <img src="Screenshots/Screenshot 2024-06-15 at 16.19.38.png" width="600px"</img> 
 </div>
 
 ---
