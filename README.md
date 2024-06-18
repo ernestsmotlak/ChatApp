@@ -5,10 +5,7 @@
 Timetable website for bus transports in Koper.
 
 ### Made with React, Node.js and SqLite
----
-### How to run
- - Run the App.js in the 'backend' folder.
- - Run the React app inside of the 'briscuola' folder. 
+
 ---
 ## Screenshots
 
