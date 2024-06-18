@@ -2,8 +2,6 @@
 
 [Frontend available here](http://84.247.184.37:3021/)
 
-[API available here](http://84.247.184.37:302)
-
 Timetable website for bus transports in Koper.
 
 ### Made with React, Node.js and SqLite
