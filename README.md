@@ -6,7 +6,6 @@ Timetable website for bus transports in Koper.
 
 ### Made with React, Node.js and SqLite
 
----
 ## Screenshots
 
 ##### Landing Page
